@@ -1,0 +1,28 @@
+
+{% include 'header.html' %}
+<!-- Uncomment the above line after integrating this project and delete the content above it -->
+
+<div class="login-page">
+  <div class="form">
+    <form class="register-form" method="POST" action="">
+    	<h1>Sign Up</h1>
+      <input type="text" placeholder="Name"/>
+      <input type="password" placeholder="Password"/>
+      <input type="text" placeholder="Email Address"/>
+      <button>create</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+    <form class="login-form" method="POST" action="">
+    	<h1>Sign In</h1>
+      <input type="text" name="username" placeholder="Username"/>
+      <input type="password" name="password" placeholder="Password"/>
+      <button>login</button>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
+</div>
+
+
+
+<!-- Uncomment the below line after integrating this project and delete the content below it -->
+{% include 'footer.html' %}

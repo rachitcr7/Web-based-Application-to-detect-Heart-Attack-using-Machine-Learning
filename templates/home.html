@@ -1,0 +1,175 @@
+{% include "header.html" %}
+<!-- Uncomment the above line after integrating this project and delete the content above it -->
+
+    <div class="container" style="">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="content form" style="margin-top: 65px">
+                    <h1>Heart Attack Predictor</h1>
+                    <form class="" action="{{ url_for('predict')}}" method="POST" onsubmit="return validation()">
+                        <div class="form-group">
+                            <!-- <label for="exampleInputName2">Age (in years) </label> -->
+                            <input type="text" class="form-control" id="age" placeholder="Age (in years)" name="age">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName2">Gender </label>
+                            <select name="gender" class="form-control" id="gender">
+                                <option value="select-gender">select-gender</option>
+                                <option value="1">Male</option>
+                                <option value="0">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName2">Chest Pain </label>
+                            <select name="cp" class="form-control" id="cp">
+                                <option value="select">select</option>
+                                <option value="0">Typical</option>
+                                <option value="1">Atypical</option>
+                                <option value="2">Non-Anginal Pain</option>
+                                <option value="3">Asymptomatic</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="exampleInputName2">Resting Blood Pressure (mm Hg) </label> -->
+                            <input type="text" class="form-control" id="bp" placeholder="Resting Blood Pressure (mm Hg)" name="bp">
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="exampleInputName2">Cholestrol (mg/dl) </label> -->
+                            <input type="text" class="form-control" id="chol" placeholder="Cholestrol (mg/dl)" name="cholestrol">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName2">Fasting Blood Sugar: 1 if >>120 </label>
+                            <select name="fasting_bp" class="form-control" id="fbs">
+                                <option>0</option>
+                                <option>1</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName2">Rest ECG: 0 for normal, 1 for abnormal </label>
+                            <select name="ecg" class="form-control" id="ecg">
+                                <option value="0">Normal</option>
+                                <option value="1">Abnormal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="exampleInputName2">Heart Rate (Max HR Achieved) </label> -->
+                            <input type="text" class="form-control" id="hr" placeholder="Heart Rate (Max HR Achieved)" name="hr">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName2">Exercise induced Angina </label>
+                            <select name="angina" class="form-control" placeholder="Exercise induced Angina" id="exang">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="exampleInputName2">Old Peak : </label> -->
+                            <input type="text" class="form-control" id="op" placeholder="Old Peak" name="op">
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="exampleInputName2">Slope : </label> -->
+                            <input type="text" class="form-control" id="slope" placeholder="Slope" name="slope">
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="exampleInputName2">CA : </label> -->
+                            <input type="text" class="form-control" id="ca" placeholder="CA" name="ca">
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="exampleInputName2">Thal : </label> -->
+                            <input type="text" class="form-control" id="thal" placeholder="Thal" name="thal">
+                        </div>
+                        <button type="submit" class="btn btn-default" onclick="return myFunction()">Predict</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+function myFunction() {
+  var a,b,c,d,e,f,g,h,i,j,text,strb,strb1,strc,strc1;
+
+  a = document.getElementById("age").value;
+
+  b = document.getElementById("gender");
+  strb = b.options[b.selectedIndex].value;
+
+  c = document.getElementById("cp");
+  strc = c.options[c.selectedIndex].value;
+  
+  d = document.getElementById("bp").value;
+  e = document.getElementById("chol").value;
+  f = document.getElementById("hr").value;
+  g = document.getElementById("op").value;
+  h = document.getElementById("slope").value;
+  i = document.getElementById("ca").value;
+  j = document.getElementById("thal").value;
+
+
+  if (isNaN(a) || a==""){
+    text = "Please Enter your age";
+    alert(text) ; return false;
+  }
+  else{
+      if (strb==99){
+         text = "Select Gender";
+         alert(text) ; return false;
+}
+      else{
+           if (strc==99){
+              text = "Select Chest Pain type";
+              alert(text) ; return false;
+}
+           else{
+                if (isNaN(d) || d=="" ){
+				   text = "Enter Blood Pressure";
+                   alert(text) ; return false;
+				}
+                else{
+                     if (isNaN(e) || e=="" ){
+						text = "Enter cholestrol";
+                        alert(text) ; return false;
+}
+                     else{
+                          if (isNaN(f) || f=="" ){
+							 text = "Enter Heart Rate";
+                             alert(text) ; return false;
+						  }
+                          else{
+                               if (isNaN(g) || g=="" ){
+								  text = "Enter Oldpeak value";
+                                  alert(text) ; return false;
+}
+                               else{
+                                    if (isNaN(h) || h=="" ){
+									   text = "Enter Slope value";
+                                       alert(text) ; return false;
+									}
+                                    else{
+                                         if (isNaN(i) || i=="" ){
+											text = "Enter CA value";
+                                            alert(text) ; return false;
+										 }
+										 else{
+											  if (isNaN(j) || j=="" ){
+											     text = "Enter thal value";
+                                                 alert(text) ; return false;
+											  }
+											  else true;
+										 }
+									}
+							   }
+						  }
+					 }
+				}
+		   }
+	  }
+  }
+}</script>
+
+
+
+<
+<!-- Uncomment the below line after integrating this project and delete the content below it -->
+{% include "footer.html" %}
+
